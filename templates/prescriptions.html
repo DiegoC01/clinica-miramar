@@ -1,0 +1,25 @@
+{{portal_header}}
+
+<section class="py-8">
+  <div class="mx-auto max-w-6xl px-6 space-y-10">
+    <div>
+      <div class="mb-5">
+        <h2 class="font-display text-xl font-bold text-slate-950">Recetas Médicas Electrónicas</h2>
+        <p class="mt-1 text-xs text-slate-500">Tratamientos vigentes e historial de prescripciones emitidas por tu equipo tratante.</p>
+      </div>
+      <div class="grid gap-5 md:grid-cols-2">
+        {{rx_cards}}
+      </div>
+    </div>
+
+    <div>
+      <div class="mb-5">
+        <h2 class="font-display text-xl font-bold text-slate-950">Órdenes de Exámenes y Estudios Pendientes</h2>
+        <p class="mt-1 text-xs text-slate-500">Revisa los requisitos de preparación antes de agendar tu toma de muestras o estudio de imagen.</p>
+      </div>
+      <div class="space-y-4">
+        {{order_cards}}
+      </div>
+    </div>
+  </div>
+</section>

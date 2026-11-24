@@ -1,0 +1,15 @@
+{
+  "name": "clinica-miramar-ui",
+  "version": "2.0.0",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/input.css -o ./static/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i ./src/input.css -o ./static/css/tailwind.css --watch"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.0",
+    "tailwindcss": "^4.1.0",
+    "@fontsource-variable/inter": "^5.2.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.2.0"
+  }
+}

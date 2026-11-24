@@ -1,0 +1,106 @@
+<section class="py-12 sm:py-16">
+  <div class="mx-auto max-w-5xl px-6">
+    <div class="card-elevated grid overflow-hidden rounded-3xl lg:grid-cols-12">
+      <!-- Panel de formulario -->
+      <div class="p-8 sm:p-10 lg:col-span-6">
+        <nav class="flex items-center gap-2 text-xs font-medium text-slate-500" aria-label="Ruta de navegación">
+          <a href="/" class="hover:text-teal-700">Inicio</a>
+          <span aria-hidden="true">/</span>
+          <span class="font-semibold text-slate-900">Portal de Pacientes</span>
+        </nav>
+
+        <h1 class="mt-4 font-display text-2xl font-extrabold tracking-tight text-slate-950 sm:text-3xl">Iniciar sesión</h1>
+        <p class="mt-1.5 text-sm text-slate-600">
+          Accede a tus resultados de exámenes, reservas y datos de contacto.
+        </p>
+
+        <div class="mt-6">
+          {{error_banner}}
+        </div>
+
+        <form action="/login" method="post" class="space-y-5" onsubmit="var b=this.querySelector('button[type=submit]'); b.disabled=true; b.textContent='Verificando acceso...';">
+          <input type="hidden" name="next" value="{{next_value}}" />
+
+          <div>
+            <label for="email" class="block text-sm font-semibold text-slate-900">Correo electrónico</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              autocomplete="email"
+              value="{{email_value}}"
+              {{aria_invalid}}
+              placeholder="nombre@miramar.local"
+              class="mt-1.5 w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 {{input_state_class}}"
+            />
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between">
+              <label for="password" class="block text-sm font-semibold text-slate-900">Contraseña</label>
+              <a href="/#ayuda" class="text-xs font-semibold text-teal-700 hover:text-teal-900">¿Necesitas ayuda?</a>
+            </div>
+            <div class="relative mt-1.5">
+              <input
+                id="password"
+                name="password"
+                type="password"
+                required
+                autocomplete="current-password"
+                {{aria_invalid}}
+                placeholder="Ingresa tu contraseña"
+                class="w-full rounded-xl border bg-white py-2.5 pl-3.5 pr-20 text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 {{input_state_class}}"
+              />
+              <button
+                id="toggle-pass-btn"
+                type="button"
+                aria-pressed="false"
+                class="absolute right-2.5 top-1/2 -translate-y-1/2 rounded-lg px-2 py-1 text-xs font-semibold text-teal-700 hover:bg-teal-50 cursor-pointer"
+              >
+                Mostrar
+              </button>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full rounded-xl bg-teal-700 px-5 py-3 text-sm font-semibold text-white shadow-sm shadow-teal-900/15 transition hover:bg-teal-800 active:scale-[0.99] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal-700 cursor-pointer"
+          >
+            Ingresar al Portal
+          </button>
+        </form>
+
+        <!-- Credenciales de prueba discretamente separadas (H10) -->
+        <details class="mt-7 rounded-xl border border-slate-200 bg-sand-50 px-4 py-3 text-xs text-slate-600">
+          <summary class="cursor-pointer font-semibold text-slate-800">Credenciales del entorno de pruebas</summary>
+          <div class="mt-2.5 space-y-1.5 border-t border-slate-200 pt-2.5">
+            <div>Paciente 1: <code class="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-900">ana.silva@miramar.local</code> · <code class="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-900">Miramar2026!</code></div>
+            <div>Paciente 2: <code class="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-900">carlos.mendez@miramar.local</code> · <code class="rounded bg-white px-1.5 py-0.5 border border-slate-200 text-slate-900">Salud2026!</code></div>
+          </div>
+        </details>
+      </div>
+
+      <!-- Panel fotográfico limpio con tarjeta glass oscura -->
+      <div class="relative hidden min-h-[520px] lg:col-span-6 lg:flex lg:flex-col lg:justify-end p-8">
+        <img
+          src="/static/img/portal-telemed.jpg"
+          alt="Paciente revisando su portal de salud desde casa"
+          class="absolute inset-0 h-full w-full object-cover"
+        />
+
+        <div class="glass-dark relative z-10 rounded-2xl p-6 text-white">
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-teal-400/20 border border-teal-300/30 px-3 py-1 text-xs font-semibold text-teal-200">
+            Portal Digital Clínica Miramar
+          </span>
+          <h2 class="mt-3 font-display text-xl font-bold leading-snug">
+            Historial clínico y gestión de citas en un entorno claro
+          </h2>
+          <p class="mt-2 text-sm leading-relaxed text-slate-200/90">
+            Revisa tus informes emitidos por tu médico tratante, reserva nuevas horas y actualiza tus canales de notificación en cualquier momento.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

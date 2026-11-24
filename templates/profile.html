@@ -1,0 +1,85 @@
+{{portal_header}}
+
+<section class="py-8">
+  <div class="mx-auto max-w-6xl px-6">
+    {{flash_banner}}
+
+    <div class="grid gap-7 lg:grid-cols-12">
+      <!-- Ficha demográfica y edición de datos sensibles -->
+      <div class="space-y-7 lg:col-span-7">
+        <div class="card-elevated rounded-2xl p-6">
+          <h2 class="font-display text-lg font-bold text-slate-950">Antecedentes Personales y Clínicos</h2>
+          <p class="mt-0.5 text-xs text-slate-500">Información protegida sincronizada con tu ficha asistencial de Clínica Miramar.</p>
+
+          <dl class="mt-5 grid gap-4 rounded-xl border border-slate-200 bg-sand-50 p-5 text-sm sm:grid-cols-2 tabular-nums">
+            <div><dt class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Nombre completo</dt><dd class="mt-0.5 font-semibold text-slate-900">{{patient_name}}</dd></div>
+            <div><dt class="text-[11px] font-bold uppercase tracking-wider text-slate-500">RUT</dt><dd class="mt-0.5 font-semibold text-slate-900">{{patient_rut}}</dd></div>
+            <div><dt class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Fecha de nacimiento</dt><dd class="mt-0.5 text-slate-800">{{patient_birth}}</dd></div>
+            <div><dt class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Grupo sanguíneo</dt><dd class="mt-0.5 font-semibold text-teal-900">{{patient_blood}}</dd></div>
+            <div class="sm:col-span-2"><dt class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Previsión de salud</dt><dd class="mt-0.5 text-slate-800">{{patient_insurance}}</dd></div>
+            <div class="sm:col-span-2"><dt class="text-[11px] font-bold uppercase tracking-wider text-rose-700">Alergias documentadas</dt><dd class="mt-0.5 font-semibold text-rose-950">{{patient_allergies}}</dd></div>
+            <div class="sm:col-span-2"><dt class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Antecedentes crónicos</dt><dd class="mt-0.5 text-slate-800">{{patient_chronic}}</dd></div>
+          </dl>
+        </div>
+
+        <div class="card-elevated rounded-2xl p-6">
+          <h2 class="font-display text-lg font-bold text-slate-950">Datos de Contacto, Domicilio y Emergencia</h2>
+          <div class="mt-2.5 rounded-xl border border-sky-200/80 bg-sky-50/70 px-3.5 py-2.5 text-xs leading-relaxed text-sky-950">
+            <strong>Aviso importante:</strong> el correo electrónico también es tu usuario para iniciar sesión en el Portal de Pacientes.
+          </div>
+
+          <form action="/paciente/perfil" method="post" class="mt-5 space-y-4">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div>
+                <label for="profile_email" class="block text-xs font-semibold text-slate-800">Correo electrónico (acceso)</label>
+                <input id="profile_email" name="email" type="email" required autocomplete="email" value="{{patient_email}}" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-900 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/15" />
+              </div>
+              <div>
+                <label for="profile_phone" class="block text-xs font-semibold text-slate-800">Teléfono personal</label>
+                <input id="profile_phone" name="phone" type="tel" inputmode="tel" required autocomplete="tel" value="{{patient_phone}}" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-900 tabular-nums focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/15" />
+              </div>
+            </div>
+
+            <div>
+              <label for="profile_address" class="block text-xs font-semibold text-slate-800">Dirección domiciliaria</label>
+              <input id="profile_address" name="address" type="text" required autocomplete="street-address" value="{{patient_address}}" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-900 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/15" />
+            </div>
+
+            <div class="grid gap-4 border-t border-slate-100 pt-4 sm:grid-cols-2">
+              <div>
+                <label for="emergency_name" class="block text-xs font-semibold text-slate-800">Contacto de emergencia</label>
+                <input id="emergency_name" name="emergency_contact_name" type="text" required value="{{emergency_name}}" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-900 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/15" />
+              </div>
+              <div>
+                <label for="emergency_phone" class="block text-xs font-semibold text-slate-800">Teléfono de emergencia</label>
+                <input id="emergency_phone" name="emergency_contact_phone" type="tel" inputmode="tel" required value="{{emergency_phone}}" class="mt-1.5 w-full rounded-xl border border-slate-300 bg-white px-3.5 py-2 text-sm text-slate-900 tabular-nums focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/15" />
+              </div>
+            </div>
+
+            <div class="flex items-center justify-end gap-2.5 pt-2">
+              <button type="reset" class="rounded-xl border border-slate-300 bg-white px-4 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer">Descartar</button>
+              <button type="submit" class="rounded-xl bg-teal-700 px-5 py-2 text-xs font-semibold text-white shadow-xs hover:bg-teal-800 cursor-pointer">Guardar cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Bitácora de actividad y seguridad de cuenta -->
+      <div class="lg:col-span-5">
+        <div class="card-elevated rounded-2xl p-6">
+          <div class="flex items-center justify-between gap-2">
+            <div>
+              <h2 class="font-display text-lg font-bold text-slate-950">Actividad Reciente</h2>
+              <p class="mt-0.5 text-xs text-slate-500">Registro de inicios de sesión y eventos asociados a tu cuenta.</p>
+            </div>
+            <span class="rounded-full bg-teal-50 border border-teal-200 px-2.5 py-0.5 text-[11px] font-semibold text-teal-800">Auditado</span>
+          </div>
+
+          <ol class="mt-6 ml-1.5">
+            {{access_log_items}}
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

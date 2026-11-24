@@ -1,0 +1,139 @@
+{{portal_header}}
+
+<section class="py-8">
+  <div class="mx-auto max-w-6xl px-6">
+    {{flash_banner}}
+
+    <!-- 4 KPIs simétricos de Resumen Clínico -->
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <a href="/paciente/resultados" class="card-elevated card-interactive rounded-2xl p-5 flex items-start justify-between gap-3">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Resultados</p>
+          <p class="mt-2 font-display text-3xl font-extrabold text-slate-950 tabular-nums">{{records_count}}</p>
+          <p class="mt-1 text-xs text-slate-500">Laboratorio e imagenología</p>
+        </div>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-800">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </span>
+      </a>
+
+      <a href="/paciente/recetas" class="card-elevated card-interactive rounded-2xl p-5 flex items-start justify-between gap-3">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Recetas vigentes</p>
+          <p class="mt-2 font-display text-3xl font-extrabold text-slate-950 tabular-nums">{{active_rx_count}}</p>
+          <p class="mt-1 text-xs text-slate-500">Medicación en curso</p>
+        </div>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sand-100 text-teal-800">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M9 12h6M12 9v6"/></svg>
+        </span>
+      </a>
+
+      <a href="/paciente/pagos" class="card-elevated card-interactive rounded-2xl p-5 flex items-start justify-between gap-3">
+        <div>
+          <p class="text-[11px] font-bold uppercase tracking-wider text-slate-500">Copago acumulado</p>
+          <p class="mt-2 font-display text-2xl font-extrabold text-slate-950 tabular-nums">{{copay_total}}</p>
+          <p class="mt-1 text-xs text-slate-500">{{bills_count}} boletas y bonos</p>
+        </div>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-sand-100 text-teal-800">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </span>
+      </a>
+
+      <div class="rounded-2xl bg-pine-950 p-5 text-white shadow-sm flex items-start justify-between gap-3">
+        <div class="min-w-0">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-teal-300/90">Próxima atención ({{appointments_count}})</p>
+          <p class="mt-2 font-display text-lg font-extrabold text-white tabular-nums leading-snug">{{next_appt_summary}}</p>
+          <p class="mt-1 text-xs text-slate-300 truncate">{{next_appt_doctor}}</p>
+        </div>
+        <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white/10 text-teal-300">
+          <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Antecedentes clínicos sintetizados -->
+    <div class="mt-5 rounded-2xl border border-sand-200 bg-sand-100/80 px-5 py-3.5 text-xs text-slate-700 flex flex-wrap items-center justify-between gap-3">
+      <div>
+        <strong class="font-bold text-slate-900">Antecedentes crónicos registrados:</strong> {{chronic_conditions}}
+      </div>
+      <a href="/paciente/perfil" class="font-bold text-teal-800 hover:underline shrink-0">Ver ficha personal completa &rarr;</a>
+    </div>
+
+    <div class="mt-7 grid gap-7 lg:grid-cols-12">
+      <!-- Columna izquierda: Últimos Resultados + Medicación Activa -->
+      <div class="space-y-7 lg:col-span-7">
+        <div id="resultados" class="card-elevated rounded-2xl overflow-hidden">
+          <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 p-5">
+            <div>
+              <h2 class="font-display text-lg font-bold text-slate-950">Últimos Resultados Clínicos</h2>
+              <p class="mt-0.5 text-xs text-slate-500">Informes de laboratorio, cardiología e imagenología más recientes.</p>
+            </div>
+            <a href="/paciente/resultados" class="rounded-xl border border-slate-200 bg-white px-3.5 py-1.5 text-xs font-semibold text-slate-800 hover:border-teal-700 hover:bg-teal-50 hover:text-teal-900">
+              Ver todos ({{records_count}}) &rarr;
+            </a>
+          </div>
+          <div class="divide-y divide-slate-100">
+            {{records_rows}}
+          </div>
+        </div>
+
+        <div class="card-elevated rounded-2xl p-5">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <div>
+              <h2 class="font-display text-lg font-bold text-slate-950">Medicación Activa</h2>
+              <p class="mt-0.5 text-xs text-slate-500">Tratamientos con receta electrónica vigente.</p>
+            </div>
+            <a href="/paciente/recetas" class="text-xs font-bold text-teal-800 hover:underline">Recetas y órdenes &rarr;</a>
+          </div>
+          <div class="space-y-3">
+            {{rx_preview_list}}
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna derecha: Mis Citas -->
+      <div class="space-y-7 lg:col-span-5">
+        <div id="citas" class="card-elevated rounded-2xl p-5">
+          <div class="flex items-center justify-between gap-3 mb-4">
+            <h2 class="font-display text-lg font-bold text-slate-950">Mis Citas</h2>
+            <a href="/agendar" class="rounded-lg bg-teal-50 px-2.5 py-1 text-xs font-bold text-teal-800 transition hover:bg-teal-100">+ Nueva cita</a>
+          </div>
+          <div class="space-y-3">
+            {{appointments_list}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal accesible <dialog> para cancelar cita -->
+<dialog id="cancel-appt-dialog" class="miramar-dialog" aria-labelledby="dialog-cancel-title">
+  <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-2xl">
+    <div class="flex items-start gap-3.5">
+      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-red-50 text-red-600">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+        </svg>
+      </div>
+      <div>
+        <h3 id="dialog-cancel-title" class="font-display text-lg font-bold text-slate-950">¿Cancelar esta cita médica?</h3>
+        <p class="mt-1.5 text-sm text-slate-600">
+          Se liberará el bloque reservado con <strong id="dialog-appt-doctor" class="text-slate-900"></strong> para el <strong id="dialog-appt-slot" class="text-slate-900 tabular-nums"></strong>.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-6 flex items-center justify-end gap-2.5">
+      <button type="button" data-close-dialog class="rounded-xl border border-slate-300 bg-white px-4 py-2 text-sm font-semibold text-slate-700 hover:bg-slate-50 cursor-pointer">
+        Mantener cita
+      </button>
+      <form action="/paciente/citas/cancelar" method="post">
+        <input id="dialog-appt-id" type="hidden" name="appointment_id" value="" />
+        <button type="submit" class="rounded-xl bg-red-600 px-4 py-2 text-sm font-semibold text-white shadow-xs transition hover:bg-red-700 cursor-pointer">
+          Sí, cancelar cita
+        </button>
+      </form>
+    </div>
+  </div>
+</dialog>
