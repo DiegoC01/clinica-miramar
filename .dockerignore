@@ -1,0 +1,16 @@
+.git
+.gitignore
+node_modules
+__pycache__
+*.pyc
+*.pyo
+clinica.db
+src
+package.json
+package-lock.json
+*.session
+*.session.*
+.env
+README.md
+docker-compose.yml
+Dockerfile

@@ -13,6 +13,35 @@ Abrir en el navegador: `http://127.0.0.1:5000`
 
 *(Opcional: `CLINICA_HOST=0.0.0.0 CLINICA_PORT=8080 python3 app.py`)*
 
+## Ejecución con Docker (o Podman en Fedora)
+
+Con **Docker Compose**:
+```bash
+docker compose up -d --build
+```
+
+O con **Docker CLI**:
+```bash
+docker build -t clinica-miramar:latest .
+docker run --rm -p 127.0.0.1:5000:5000 --name clinica-miramar clinica-miramar:latest
+```
+
+En **Fedora** (usando `podman`, ya preinstalado):
+```bash
+podman build -t clinica-miramar:latest .
+podman run --rm -p 127.0.0.1:5000:5000 --name clinica-miramar clinica-miramar:latest
+```
+
+Para **transportar la imagen 100% offline** a tu VM de Kali Linux:
+```bash
+docker save -o clinica-miramar-image.tar clinica-miramar:latest
+# Dentro de Kali Linux:
+docker load -i clinica-miramar-image.tar
+docker run --rm -p 127.0.0.1:5000:5000 clinica-miramar:latest
+```
+
+*(Nota: la base SQLite dentro del contenedor se inicializa automáticamente en `/app/data/clinica.db`; al reiniciar el contenedor con `--rm`, el entorno vuelve siempre a su estado limpio inicial).*
+
 ## Recompilación de estilos (solo si modificas plantillas o `src/input.css`)
 
 ```bash

@@ -1,0 +1,14 @@
+services:
+  clinica-miramar:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: clinica-miramar:latest
+    container_name: clinica-miramar
+    ports:
+      - "127.0.0.1:5000:5000"
+    environment:
+      CLINICA_HOST: "0.0.0.0"
+      CLINICA_PORT: "5000"
+      CLINICA_DB_PATH: "/app/data/clinica.db"
+    restart: unless-stopped
